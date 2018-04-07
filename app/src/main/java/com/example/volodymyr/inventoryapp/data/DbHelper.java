@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.volodymyr.inventoryapp.data.model.Product;
+import com.example.volodymyr.inventoryapp.di.DatabaseInfo;
 
 import javax.inject.Inject;
 
@@ -22,7 +23,9 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String PRODUCT_COLUMN_PRODUCT_SUPPLIER_PHONE_NUMBER = "supplier_phone_number";
 
     @Inject
-    public DbHelper(Context context, String name, int version) {
+    public DbHelper(Context context,
+                    @DatabaseInfo String name,
+                    @DatabaseInfo int version) {
         super(context, name, null, version);
     }
 
@@ -41,11 +44,11 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS "
                 + PRODUCT_TABLE_NAME + "("
                 + PRODUCT_COLUMN_PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + PRODUCT_COLUMN_PRODUCT_NAME + " VARCHAR(50), "
-                + PRODUCT_COLUMN_PRODUCT_PRICE + " INTEGER(10), "
-                + PRODUCT_COLUMN_PRODUCT_QUANTITY + " INTEGER(5), "
-                + PRODUCT_COLUMN_PRODUCT_SUPPLIER_NAME + " VARCHAR(20), "
-                + PRODUCT_COLUMN_PRODUCT_SUPPLIER_PHONE_NUMBER + " VARCHAR(20) " + ")");
+                + PRODUCT_COLUMN_PRODUCT_NAME + " VARCHAR(50) DEFAULT '', "
+                + PRODUCT_COLUMN_PRODUCT_PRICE + " INTEGER(10) DEFAULT 0, "
+                + PRODUCT_COLUMN_PRODUCT_QUANTITY + " INTEGER(5) DEFAULT 0, "
+                + PRODUCT_COLUMN_PRODUCT_SUPPLIER_NAME + " VARCHAR(20) DEFAULT '', "
+                + PRODUCT_COLUMN_PRODUCT_SUPPLIER_PHONE_NUMBER + " VARCHAR(20)  DEFAULT ''" + ")");
     }
 
     public Long insertProduct(Product product) {
