@@ -2,7 +2,10 @@ package com.example.volodymyr.inventoryapp.ui.main;
 
 import com.example.volodymyr.inventoryapp.di.module.ActivityScoped;
 import com.example.volodymyr.inventoryapp.di.module.FragmentScoped;
-import com.example.volodymyr.inventoryapp.ui.main.fragments.MainFragment;
+import com.example.volodymyr.inventoryapp.ui.main.fragments.AddInventoryFragment;
+import com.example.volodymyr.inventoryapp.ui.main.fragments.AllInventoryFragment;
+import com.example.volodymyr.inventoryapp.ui.main.fragments.EditProductFragment;
+import com.example.volodymyr.inventoryapp.ui.main.fragments.ProductDetailsFragment;
 
 import dagger.Binds;
 import dagger.Module;
@@ -12,7 +15,19 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class MainModule {
     @FragmentScoped
     @ContributesAndroidInjector
-    abstract MainFragment mainFragment();
+    abstract AllInventoryFragment mAllInventoryFragment();
+
+    @FragmentScoped
+    @ContributesAndroidInjector
+    abstract AddInventoryFragment mAddInventoryFragment();
+
+    @FragmentScoped
+    @ContributesAndroidInjector
+    abstract EditProductFragment mEditProductFragment();
+
+    @FragmentScoped
+    @ContributesAndroidInjector
+    abstract ProductDetailsFragment mProductDetailsFragment();
 
     @ActivityScoped
     @Binds

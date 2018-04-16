@@ -7,35 +7,38 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.volodymyr.inventoryapp.R;
 import com.example.volodymyr.inventoryapp.di.module.ActivityScoped;
 import com.example.volodymyr.inventoryapp.ui.main.MainContract;
 import com.example.volodymyr.inventoryapp.ui.main.MainPresenter;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
 import dagger.android.support.DaggerFragment;
 
 @ActivityScoped
-public class MainFragment extends DaggerFragment implements MainContract.View {
+public class AddInventoryFragment extends DaggerFragment implements MainContract.View {
+
     @Inject
     protected MainPresenter mMainPresenter;
 
     @Inject
-    public MainFragment() {
+    public AddInventoryFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_add_or_edit_product, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
         mMainPresenter.takeView(this);
-        mMainPresenter.createProduct();
-        mMainPresenter.getProduct();
     }
 
     @Override

@@ -22,4 +22,16 @@ public class DataManager {
     public Product getProduct(Long productId) {
         return mDbHelper.getProduct(productId);
     }
+
+    public int editProduct(Long productId, Product product){
+        return mDbHelper.updateProduct(productId, product);
+    }
+
+    public void deleteAllProducts(){
+        mDbHelper.deleteAllProducts();
+    }
+
+    public void deleteProduct(Long productId){
+        mDbHelper.deleteProduct(productId);
+    }
 }

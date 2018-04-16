@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="product_image_preview_width">60dp</dimen>
+    <dimen name="product_image_preview_height">60dp</dimen>
+    <dimen name="floating_button_margin">16dp</dimen>
+</resources>

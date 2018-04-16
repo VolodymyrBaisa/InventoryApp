@@ -31,17 +31,8 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     public void createProduct() {
-        mDataManager.createProduct(new Product("3D Solutech Real White 3D Printer PLA Filament 1.75MM Filament 2.2 lb.",
+        mDataManager.createProduct(new Product(null, "3D Solutech Real White 3D Printer PLA Filament 1.75MM Filament 2.2 lb.",
                 1799, 10, "3D Solutech", "(347)-99-9989"));
-
-        mDataManager.createProduct(new Product("3D Solutech PETG175BLU See Through Blue 1.75 mm PETG 3D Printer Filament 2.2 lb.",
-                1799, 5, "3D Solutech", "(347)-99-9989"));
-
-        mDataManager.createProduct(new Product("3D Solutech Chocolate Brown 3D Printer PLA Filament 1.75MM Filament, Dimensional Accuracy +/- 0.03 mm, 2.2 LBS (1.0KG) - 100% USA",
-                1799, 8, "3D Solutech", "(347)-99-9989"));
-
-        mDataManager.createProduct(new Product("3D Solutech Beige 3D Printer PLA Filament 1.75MM Filament, Dimensional Accuracy +/- 0.03 mm, 2.2 LBS (1.0KG) - 100% USA",
-                1899, 8, "3D Solutech", "(347)-99-9989"));
 
         Log.d(LOG_TAG, "Create products");
     }
@@ -55,4 +46,6 @@ public class MainPresenter implements MainContract.Presenter {
         Log.d(LOG_TAG, "Supplier phone number: " + product.getSupplierPhoneNumber());
 
     }
+
+
 }

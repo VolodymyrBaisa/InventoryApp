@@ -16,6 +16,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public static final String PRODUCT_TABLE_NAME = "products";
     public static final String PRODUCT_COLUMN_PRODUCT_ID = "id";
+    public static final String PRODUCT_COLUMN_PRODUCT_IMAGE = "product_image";
     public static final String PRODUCT_COLUMN_PRODUCT_NAME = "product_name";
     public static final String PRODUCT_COLUMN_PRODUCT_PRICE = "price";
     public static final String PRODUCT_COLUMN_PRODUCT_QUANTITY = "quantity";
@@ -44,6 +45,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS "
                 + PRODUCT_TABLE_NAME + "("
                 + PRODUCT_COLUMN_PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + PRODUCT_COLUMN_PRODUCT_IMAGE + "BLOB"
                 + PRODUCT_COLUMN_PRODUCT_NAME + " VARCHAR(50) DEFAULT '', "
                 + PRODUCT_COLUMN_PRODUCT_PRICE + " INTEGER(10) DEFAULT 0, "
                 + PRODUCT_COLUMN_PRODUCT_QUANTITY + " INTEGER(5) DEFAULT 0, "
@@ -54,6 +56,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public Long insertProduct(Product product) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(PRODUCT_COLUMN_PRODUCT_IMAGE, product.getProductImage());
         contentValues.put(PRODUCT_COLUMN_PRODUCT_NAME, product.getProductName());
         contentValues.put(PRODUCT_COLUMN_PRODUCT_PRICE, product.getPrice());
         contentValues.put(PRODUCT_COLUMN_PRODUCT_QUANTITY, product.getQuantity());
@@ -75,6 +78,7 @@ public class DbHelper extends SQLiteOpenHelper {
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 Product product = new Product(
+                        cursor.getBlob(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_IMAGE)),
                         cursor.getString(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_NAME)),
                         cursor.getInt(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_PRICE)),
                         cursor.getInt(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_QUANTITY)),
@@ -88,5 +92,29 @@ public class DbHelper extends SQLiteOpenHelper {
             if (cursor != null)
                 cursor.close();
         }
+    }
+
+    public int updateProduct(Long productId, Product product){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(PRODUCT_COLUMN_PRODUCT_IMAGE, product.getProductImage());
+        contentValues.put(PRODUCT_COLUMN_PRODUCT_NAME, product.getProductName());
+        contentValues.put(PRODUCT_COLUMN_PRODUCT_PRICE, product.getPrice());
+        contentValues.put(PRODUCT_COLUMN_PRODUCT_QUANTITY, product.getQuantity());
+        contentValues.put(PRODUCT_COLUMN_PRODUCT_SUPPLIER_NAME, product.getSupplierName());
+        contentValues.put(PRODUCT_COLUMN_PRODUCT_SUPPLIER_PHONE_NUMBER, product.getSupplierPhoneNumber());
+
+        return db.update(PRODUCT_TABLE_NAME, contentValues, PRODUCT_COLUMN_PRODUCT_ID + productId, null);
+    }
+
+    public void deleteAllProducts(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL("DELETE FROM "+ PRODUCT_TABLE_NAME);
+    }
+
+    public void deleteProduct(Long productId){
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.delete(PRODUCT_TABLE_NAME, PRODUCT_COLUMN_PRODUCT_ID + productId, null);
     }
 }
