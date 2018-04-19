@@ -1,7 +1,7 @@
 package com.example.volodymyr.inventoryapp.di.module;
 
-import com.example.volodymyr.inventoryapp.ui.main.MainActivity;
-import com.example.volodymyr.inventoryapp.ui.main.MainModule;
+import com.example.volodymyr.inventoryapp.ui.MainActivity;
+import com.example.volodymyr.inventoryapp.ui.MainModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

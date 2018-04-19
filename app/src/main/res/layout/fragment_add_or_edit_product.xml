@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/product_image_text"
-        style="@style/TextInputStyle"
+        style="@style/TextPrimaryBoldStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/product_image"
@@ -28,7 +28,7 @@
 
     <TextView
         android:id="@+id/product_name_text"
-        style="@style/TextInputStyle"
+        style="@style/TextPrimaryBoldStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/product_name"
@@ -51,7 +51,7 @@
 
     <TextView
         android:id="@+id/product_price_text"
-        style="@style/TextInputStyle"
+        style="@style/TextPrimaryBoldStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/product_price"
@@ -74,7 +74,7 @@
 
     <TextView
         android:id="@+id/product_quantity_text"
-        style="@style/TextInputStyle"
+        style="@style/TextPrimaryBoldStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/product_quantity"
@@ -120,7 +120,7 @@
 
     <TextView
         android:id="@+id/product_supplier_name_text"
-        style="@style/TextInputStyle"
+        style="@style/TextPrimaryBoldStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/supplier_name"
@@ -143,7 +143,7 @@
 
     <TextView
         android:id="@+id/product_supplier_phone_number_text"
-        style="@style/TextInputStyle"
+        style="@style/TextPrimaryBoldStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/supplier_phone_number"

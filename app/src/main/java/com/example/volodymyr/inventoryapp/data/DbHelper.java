@@ -10,6 +10,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.volodymyr.inventoryapp.data.model.Product;
 import com.example.volodymyr.inventoryapp.di.DatabaseInfo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 public class DbHelper extends SQLiteOpenHelper {
@@ -45,7 +48,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS "
                 + PRODUCT_TABLE_NAME + "("
                 + PRODUCT_COLUMN_PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + PRODUCT_COLUMN_PRODUCT_IMAGE + "BLOB"
+                + PRODUCT_COLUMN_PRODUCT_IMAGE + " BLOB, "
                 + PRODUCT_COLUMN_PRODUCT_NAME + " VARCHAR(50) DEFAULT '', "
                 + PRODUCT_COLUMN_PRODUCT_PRICE + " INTEGER(10) DEFAULT 0, "
                 + PRODUCT_COLUMN_PRODUCT_QUANTITY + " INTEGER(5) DEFAULT 0, "
@@ -87,6 +90,40 @@ public class DbHelper extends SQLiteOpenHelper {
                 return product;
             } else {
                 throw new Resources.NotFoundException("Product with id " + productId + " does not exists");
+            }
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+    }
+
+    public List<Product> getProducts() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        try {
+            cursor = db.rawQuery(
+                    "SELECT * FROM " + PRODUCT_TABLE_NAME, null);
+
+            if (cursor.getCount() > 0) {
+                ArrayList<Product> products = new ArrayList<>();
+
+                cursor.moveToFirst();
+                while(!cursor.isAfterLast()) {
+                Product product = new Product(
+                        cursor.getBlob(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_IMAGE)),
+                        cursor.getString(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_NAME)),
+                        cursor.getInt(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_PRICE)),
+                        cursor.getInt(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_QUANTITY)),
+                        cursor.getString(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_SUPPLIER_NAME)),
+                        cursor.getString(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_SUPPLIER_PHONE_NUMBER)));
+
+                    products.add(product);
+                    cursor.moveToNext();
+                }
+
+                return products;
+            } else {
+                throw new Resources.NotFoundException("Product does not exists");
             }
         } finally {
             if (cursor != null)

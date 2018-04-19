@@ -39,7 +39,7 @@
 
             <TextView
                 android:id="@+id/product_name_text"
-                style="@style/TextInputStyle"
+                style="@style/TextPrimaryBoldStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/product_name"
@@ -47,14 +47,12 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@id/product_edit_name" />
 
-            <EditText
+            <TextView
                 android:id="@+id/product_edit_name"
-                style="@style/EditTextStyle"
+                style="@style/TextPrimaryStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border_line"
-                android:hint="@string/product_name_hint"
-                android:inputType="textCapSentences|textAutoCorrect"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/product_name_text"
                 app:layout_constraintTop_toTopOf="parent"
@@ -62,7 +60,7 @@
 
             <TextView
                 android:id="@+id/product_price_text"
-                style="@style/TextInputStyle"
+                style="@style/TextPrimaryBoldStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/product_price"
@@ -70,14 +68,12 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@id/product_edit_price" />
 
-            <EditText
+            <TextView
                 android:id="@+id/product_edit_price"
-                style="@style/EditTextStyle"
+                style="@style/TextPrimaryStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border_line"
-                android:hint="@string/product_price_hint"
-                android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/product_price_text"
                 app:layout_constraintTop_toBottomOf="@id/product_edit_name"
@@ -85,7 +81,7 @@
 
             <TextView
                 android:id="@+id/product_quantity_text"
-                style="@style/TextInputStyle"
+                style="@style/TextPrimaryBoldStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/product_quantity"
@@ -93,13 +89,12 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@id/product_edit_quantity" />
 
-            <EditText
+            <TextView
                 android:id="@+id/product_edit_quantity"
-                style="@style/EditTextStyle"
+                style="@style/TextPrimaryStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border_line"
-                android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/product_quantity_text"
                 app:layout_constraintTop_toBottomOf="@id/product_edit_price"
@@ -107,7 +102,7 @@
 
             <TextView
                 android:id="@+id/product_supplier_name_text"
-                style="@style/TextInputStyle"
+                style="@style/TextPrimaryBoldStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/supplier_name"
@@ -115,14 +110,12 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@id/product_edit_supplier_name" />
 
-            <EditText
+            <TextView
                 android:id="@+id/product_edit_supplier_name"
-                style="@style/EditTextStyle"
+                style="@style/TextPrimaryStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border_line"
-                android:hint="@string/product_supplier_name_hint"
-                android:inputType="textCapSentences|textAutoCorrect"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/product_supplier_name_text"
                 app:layout_constraintTop_toBottomOf="@id/product_edit_quantity"
@@ -130,7 +123,7 @@
 
             <TextView
                 android:id="@+id/product_supplier_phone_number_text"
-                style="@style/TextInputStyle"
+                style="@style/TextPrimaryBoldStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/supplier_phone_number"
@@ -138,19 +131,34 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@id/product_edit_supplier_phone_number" />
 
-            <EditText
+            <TextView
                 android:id="@+id/product_edit_supplier_phone_number"
-                style="@style/EditTextStyle"
+                style="@style/TextPrimaryStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border_line"
-                android:hint="@string/product_supplier_phone_number_hint"
-                android:inputType="phone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/product_supplier_phone_number_text"
                 app:layout_constraintTop_toBottomOf="@id/product_edit_supplier_name"
                 tools:text="@tools:sample/us_phones" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/delete_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_stat_delete"
+                android:layout_margin="@dimen/floating_button_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/edit_product"/>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/edit_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_stat_mode_edit"
+                android:layout_margin="@dimen/floating_button_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
-
 </android.support.design.widget.CoordinatorLayout>

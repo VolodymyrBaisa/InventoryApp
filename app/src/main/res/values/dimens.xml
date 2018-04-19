@@ -3,4 +3,6 @@
     <dimen name="product_image_preview_width">60dp</dimen>
     <dimen name="product_image_preview_height">60dp</dimen>
     <dimen name="floating_button_margin">16dp</dimen>
+    <dimen name="card_elevation">5dp</dimen>
+    <dimen name="product_preview_price_margin_start">31dp</dimen>
 </resources>

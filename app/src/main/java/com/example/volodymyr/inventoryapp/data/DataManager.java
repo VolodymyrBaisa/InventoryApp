@@ -2,6 +2,8 @@ package com.example.volodymyr.inventoryapp.data;
 
 import com.example.volodymyr.inventoryapp.data.model.Product;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -21,6 +23,10 @@ public class DataManager {
 
     public Product getProduct(Long productId) {
         return mDbHelper.getProduct(productId);
+    }
+
+    public List<Product> getProducts() {
+        return mDbHelper.getProducts();
     }
 
     public int editProduct(Long productId, Product product){
