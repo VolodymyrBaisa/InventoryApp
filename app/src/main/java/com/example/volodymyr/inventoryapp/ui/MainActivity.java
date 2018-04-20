@@ -3,8 +3,7 @@ package com.example.volodymyr.inventoryapp.ui;
 import android.os.Bundle;
 
 import com.example.volodymyr.inventoryapp.R;
-import com.example.volodymyr.inventoryapp.ui.fragments.AllInventoryFragment;
-import com.example.volodymyr.inventoryapp.ui.fragments.ProductDetailsFragment;
+import com.example.volodymyr.inventoryapp.ui.fragments.allinventory.AllInventoryFragment;
 import com.example.volodymyr.inventoryapp.utils.ActivityUtils;
 
 import javax.inject.Inject;

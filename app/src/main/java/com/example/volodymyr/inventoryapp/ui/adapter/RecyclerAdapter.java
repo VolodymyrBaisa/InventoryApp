@@ -16,6 +16,7 @@ import javax.inject.Inject;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
     private List<Product> mProduct;
+    private OnItemClickListener mListener;
 
     @Inject
     public RecyclerAdapter() {
@@ -32,10 +33,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Product product = mProduct.get(position);
 
-        holder.mProductPreviewImage.setImageBitmap(ImageUtils.decodeByteArray(product.getProductImage()));
+        holder.mProductPreviewImage.setImageBitmap(ImageUtils.getBitmapFromByteArray(product.getProductImage()));
         holder.mProductPreviewName.setText(product.getProductName());
         holder.mProductQuantity.setText(String.valueOf(product.getQuantity()));
         holder.mProductPrice.setText(String.valueOf(product.getPrice()));
+        holder.bind(product.getId(), mListener);
     }
 
     @Override
@@ -49,5 +51,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
     public void setProducts(List<Product> products) {
         mProduct = products;
         notifyDataSetChanged();
+    }
+
+    public void setOnClickItemListener(OnItemClickListener listener) {
+        mListener = listener;
     }
 }

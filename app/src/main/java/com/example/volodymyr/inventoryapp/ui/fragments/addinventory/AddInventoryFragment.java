@@ -1,4 +1,4 @@
-package com.example.volodymyr.inventoryapp.ui.fragments;
+package com.example.volodymyr.inventoryapp.ui.fragments.addinventory;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,23 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.volodymyr.inventoryapp.R;
-import com.example.volodymyr.inventoryapp.data.model.Product;
 import com.example.volodymyr.inventoryapp.di.module.ActivityScoped;
-import com.example.volodymyr.inventoryapp.ui.MainContract;
-import com.example.volodymyr.inventoryapp.ui.MainPresenter;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dagger.android.support.DaggerFragment;
 
 @ActivityScoped
-public class AddInventoryFragment extends DaggerFragment implements MainContract.View {
-
+public class AddInventoryFragment extends DaggerFragment implements AddInventoryContract.View {
     @Inject
-    protected MainPresenter mMainPresenter;
+    protected AddInventoryPresenter mAddInventoryPresenter;
 
     @Inject
     public AddInventoryFragment() {
@@ -41,17 +36,17 @@ public class AddInventoryFragment extends DaggerFragment implements MainContract
     @Override
     public void onResume() {
         super.onResume();
-        mMainPresenter.takeView(this);
+        mAddInventoryPresenter.takeView(this);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mMainPresenter.dropView();
+        mAddInventoryPresenter.dropView();
     }
 
-    @Override
-    public void setProducts(List<Product> products) {
-
+    @OnClick(R.id.save_product)
+    public void saveNewProduct(View view) {
+        //mAddInventoryPresenter.createProduct();
     }
 }

@@ -81,6 +81,7 @@ public class DbHelper extends SQLiteOpenHelper {
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 Product product = new Product(
+                        cursor.getInt(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_ID)),
                         cursor.getBlob(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_IMAGE)),
                         cursor.getString(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_NAME)),
                         cursor.getInt(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_PRICE)),
@@ -110,6 +111,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 cursor.moveToFirst();
                 while(!cursor.isAfterLast()) {
                 Product product = new Product(
+                        cursor.getInt(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_ID)),
                         cursor.getBlob(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_IMAGE)),
                         cursor.getString(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_NAME)),
                         cursor.getInt(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_PRICE)),

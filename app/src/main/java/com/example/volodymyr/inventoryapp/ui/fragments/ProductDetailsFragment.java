@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import com.example.volodymyr.inventoryapp.R;
 import com.example.volodymyr.inventoryapp.data.model.Product;
 import com.example.volodymyr.inventoryapp.di.module.ActivityScoped;
-import com.example.volodymyr.inventoryapp.ui.MainContract;
-import com.example.volodymyr.inventoryapp.ui.MainPresenter;
+import com.example.volodymyr.inventoryapp.ui.fragments.allinventory.AllInventoryContract;
+import com.example.volodymyr.inventoryapp.ui.fragments.allinventory.AllInventoryPresenter;
 
 import java.util.List;
 
@@ -21,10 +21,10 @@ import butterknife.ButterKnife;
 import dagger.android.support.DaggerFragment;
 
 @ActivityScoped
-public class ProductDetailsFragment extends DaggerFragment implements MainContract.View {
+public class ProductDetailsFragment extends DaggerFragment implements AllInventoryContract.View {
 
     @Inject
-    protected MainPresenter mMainPresenter;
+    protected AllInventoryPresenter mAllInventoryPresenter;
 
     @Inject
     public ProductDetailsFragment() {
@@ -41,13 +41,13 @@ public class ProductDetailsFragment extends DaggerFragment implements MainContra
     @Override
     public void onResume() {
         super.onResume();
-        mMainPresenter.takeView(this);
+        mAllInventoryPresenter.takeView(this);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mMainPresenter.dropView();
+        mAllInventoryPresenter.dropView();
     }
 
     @Override

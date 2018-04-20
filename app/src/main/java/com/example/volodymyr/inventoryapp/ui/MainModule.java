@@ -3,8 +3,10 @@ package com.example.volodymyr.inventoryapp.ui;
 import com.example.volodymyr.inventoryapp.di.module.ActivityScoped;
 import com.example.volodymyr.inventoryapp.di.module.FragmentScoped;
 import com.example.volodymyr.inventoryapp.ui.adapter.AdapterModule;
-import com.example.volodymyr.inventoryapp.ui.fragments.AddInventoryFragment;
-import com.example.volodymyr.inventoryapp.ui.fragments.AllInventoryFragment;
+import com.example.volodymyr.inventoryapp.ui.fragments.addinventory.AddInventoryContract;
+import com.example.volodymyr.inventoryapp.ui.fragments.allinventory.AllInventoryContract;
+import com.example.volodymyr.inventoryapp.ui.fragments.addinventory.AddInventoryFragment;
+import com.example.volodymyr.inventoryapp.ui.fragments.allinventory.AllInventoryFragment;
 import com.example.volodymyr.inventoryapp.ui.fragments.EditProductFragment;
 import com.example.volodymyr.inventoryapp.ui.fragments.ProductDetailsFragment;
 
@@ -32,5 +34,9 @@ public abstract class MainModule {
 
     @ActivityScoped
     @Binds
-    abstract MainContract.Presenter mainPresenter(MainContract.Presenter presenter);
+    abstract AllInventoryContract.Presenter allInventoryPresenter(AllInventoryContract.Presenter presenter);
+
+    @ActivityScoped
+    @Binds
+    abstract AddInventoryContract.Presenter addInventoryPresenter(AddInventoryContract.Presenter presenter);
 }

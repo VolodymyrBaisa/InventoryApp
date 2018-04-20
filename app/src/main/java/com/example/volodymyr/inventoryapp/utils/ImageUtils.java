@@ -4,14 +4,19 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 
 public class ImageUtils {
     private ImageUtils() {
         throw new IllegalAccessError("Utility class");
     }
 
-    public static Bitmap decodeByteArray(byte[] bytes){
+    public static Bitmap getBitmapFromByteArray(byte[] bytes) {
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    }
+
+    public static Bitmap getBitmapFromInputStream(InputStream inputStream) {
+        return BitmapFactory.decodeStream(inputStream);
     }
 
     public static byte[] getBytesFromBitmap(Bitmap bitmap) {

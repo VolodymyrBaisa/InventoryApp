@@ -27,4 +27,12 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
+
+  public void bind(final long itemId, final OnItemClickListener listener) {
+    itemView.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        listener.onItemClick(itemId);
+      }
+    });
+  }
 }
