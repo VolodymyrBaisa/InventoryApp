@@ -1,8 +1,6 @@
 package com.example.volodymyr.inventoryapp.ui.adapter;
 
 import android.app.Application;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,7 +11,6 @@ import com.example.volodymyr.inventoryapp.R;
 import com.example.volodymyr.inventoryapp.data.model.Product;
 import com.example.volodymyr.inventoryapp.utils.ImageUtils;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 

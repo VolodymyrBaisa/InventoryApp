@@ -2,10 +2,8 @@ package com.example.volodymyr.inventoryapp.ui.adapter;
 
 import android.app.Application;
 
-import com.example.volodymyr.inventoryapp.di.module.ActivityScoped;
 import com.example.volodymyr.inventoryapp.di.module.FragmentScoped;
 
-import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 

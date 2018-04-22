@@ -1,11 +1,9 @@
 package com.example.volodymyr.inventoryapp.base;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 public interface BaseView<T> {
     default void setTitle(Context context, @StringRes int title) {

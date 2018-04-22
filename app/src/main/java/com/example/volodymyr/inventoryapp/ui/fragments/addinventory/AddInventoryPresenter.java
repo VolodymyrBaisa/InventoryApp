@@ -1,14 +1,11 @@
 package com.example.volodymyr.inventoryapp.ui.fragments.addinventory;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Intent;
 
 import com.example.volodymyr.inventoryapp.data.DataManager;
 import com.example.volodymyr.inventoryapp.data.model.Product;
-import com.example.volodymyr.inventoryapp.utils.ImageUtils;
 
-import java.io.InputStream;
 import java.lang.ref.WeakReference;
 
 import javax.inject.Inject;

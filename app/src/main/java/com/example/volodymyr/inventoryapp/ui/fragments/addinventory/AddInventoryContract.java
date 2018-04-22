@@ -5,8 +5,6 @@ import android.content.Intent;
 import com.example.volodymyr.inventoryapp.base.BasePresenter;
 import com.example.volodymyr.inventoryapp.base.BaseView;
 
-import java.io.InputStream;
-
 public interface AddInventoryContract {
     interface View extends BaseView<Presenter> {
         void setImageProduct(String imageLink);
