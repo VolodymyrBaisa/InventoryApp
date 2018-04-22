@@ -7,8 +7,9 @@ import com.example.volodymyr.inventoryapp.ui.fragments.addinventory.AddInventory
 import com.example.volodymyr.inventoryapp.ui.fragments.allinventory.AllInventoryContract;
 import com.example.volodymyr.inventoryapp.ui.fragments.addinventory.AddInventoryFragment;
 import com.example.volodymyr.inventoryapp.ui.fragments.allinventory.AllInventoryFragment;
-import com.example.volodymyr.inventoryapp.ui.fragments.EditProductFragment;
-import com.example.volodymyr.inventoryapp.ui.fragments.ProductDetailsFragment;
+import com.example.volodymyr.inventoryapp.ui.fragments.editproduct.EditProductFragment;
+import com.example.volodymyr.inventoryapp.ui.fragments.productdetails.ProductDetailsContract;
+import com.example.volodymyr.inventoryapp.ui.fragments.productdetails.ProductDetailsFragment;
 
 import dagger.Binds;
 import dagger.Module;
@@ -39,4 +40,8 @@ public abstract class MainModule {
     @ActivityScoped
     @Binds
     abstract AddInventoryContract.Presenter addInventoryPresenter(AddInventoryContract.Presenter presenter);
+
+    @ActivityScoped
+    @Binds
+    abstract ProductDetailsContract.Presenter addIDetailsPresenter(ProductDetailsContract.Presenter presenter);
 }

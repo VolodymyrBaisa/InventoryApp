@@ -2,20 +2,20 @@ package com.example.volodymyr.inventoryapp.data.model;
 
 public class Product {
     private long mId;
-    private byte[] mProductImage;
+    private String mProductImageLink;
     private String mProductName;
     private int mPrice;
     private int mQuantity;
     private String mSupplierName;
     private String mSupplierPhoneNumber;
 
-    public Product(byte[] productImage, String productName, int price, int quantity, String supplierName, String supplierPhoneNumber) {
-        this(-1, productImage, productName, price, quantity, supplierName, supplierPhoneNumber);
+    public Product(String productImageLink, String productName, int price, int quantity, String supplierName, String supplierPhoneNumber) {
+        this(-1, productImageLink, productName, price, quantity, supplierName, supplierPhoneNumber);
     }
 
-    public Product(long id, byte[] productImage, String productName, int price, int quantity, String supplierName, String supplierPhoneNumber) {
+    public Product(long id, String productImageLink, String productName, int price, int quantity, String supplierName, String supplierPhoneNumber) {
         if (id != -1) this.mId = id;
-        this.mProductImage = productImage;
+        this.mProductImageLink = productImageLink;
         this.mProductName = productName;
         this.mPrice = price;
         this.mQuantity = quantity;
@@ -27,8 +27,8 @@ public class Product {
         return mId;
     }
 
-    public byte[] getProductImage() {
-        return mProductImage;
+    public String getProductImageLink() {
+        return mProductImageLink;
     }
 
     public String getProductName() {

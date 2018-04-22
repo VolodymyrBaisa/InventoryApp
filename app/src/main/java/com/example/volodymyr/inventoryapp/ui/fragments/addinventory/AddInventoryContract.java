@@ -1,21 +1,25 @@
 package com.example.volodymyr.inventoryapp.ui.fragments.addinventory;
 
+import android.content.Intent;
+
 import com.example.volodymyr.inventoryapp.base.BasePresenter;
 import com.example.volodymyr.inventoryapp.base.BaseView;
-import com.example.volodymyr.inventoryapp.data.model.Product;
 
-import java.util.List;
+import java.io.InputStream;
 
 public interface AddInventoryContract {
     interface View extends BaseView<Presenter> {
+        void setImageProduct(String imageLink);
     }
 
     interface Presenter extends BasePresenter<View> {
-        void createProduct(String productImage,
+        void createProduct(String productImageLink,
                            String productName,
                            int price,
                            int quantity,
                            String supplierName,
                            String supplierPhoneNumber);
+
+        void setImageResult(int requestCode, int requestId, int resultCode, Intent data);
     }
 }

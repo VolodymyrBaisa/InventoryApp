@@ -1,18 +1,17 @@
-package com.example.volodymyr.inventoryapp.ui.fragments.allinventory;
+package com.example.volodymyr.inventoryapp.ui.fragments.productdetails;
 
 import com.example.volodymyr.inventoryapp.base.BasePresenter;
 import com.example.volodymyr.inventoryapp.base.BaseView;
 import com.example.volodymyr.inventoryapp.data.model.Product;
 
-import java.util.List;
-
-public interface AllInventoryContract {
+public interface ProductDetailsContract {
     interface View extends BaseView<Presenter> {
-        void setProducts(List<Product> products);
-        void setMessageIfListEmpty(int visibility);
+        void initProduct(Product product);
     }
 
     interface Presenter extends BasePresenter<View> {
-        void showProductsList();
+        void setProduct(long productId);
+        void prepareProduct();
+        void deleteProduct(long productId);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.volodymyr.inventoryapp.utils;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -22,6 +23,14 @@ public class ActivityUtils {
         checkNotNull(fragment);
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(frameId, fragment);
+        transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public static void openImageGallery(@NonNull Fragment fragment, int requestCode) {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+        fragment.startActivityForResult(intent, requestCode);
     }
 }

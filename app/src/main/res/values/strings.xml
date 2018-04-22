@@ -7,7 +7,13 @@
     <string name="supplier_name">Supplier name:</string>
     <string name="supplier_phone_number">Supplier phone number:</string>
     <string name="product_name_hint">Product name</string>
+    <string name="product_quantity_hint">Product quantity</string>
     <string name="product_price_hint">Product price</string>
     <string name="product_supplier_name_hint">Product supplier name</string>
     <string name="product_supplier_phone_number_hint">Product supplier phone number</string>
+    <string name="inventory">Inventory</string>
+    <string name="you_have_nothing_in_you_list_add_some">You have nothing in you list. Add some.</string>
+    <string name="add_product">Add product</string>
+    <string name="details_product">Details product</string>
+    <string name="edit_product">Edit product</string>
 </resources>

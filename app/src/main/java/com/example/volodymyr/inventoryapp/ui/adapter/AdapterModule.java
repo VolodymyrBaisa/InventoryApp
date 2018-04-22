@@ -1,7 +1,11 @@
 package com.example.volodymyr.inventoryapp.ui.adapter;
 
+import android.app.Application;
+
+import com.example.volodymyr.inventoryapp.di.module.ActivityScoped;
 import com.example.volodymyr.inventoryapp.di.module.FragmentScoped;
 
+import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 
@@ -12,7 +16,7 @@ import dagger.Provides;
 public abstract class AdapterModule {
     @FragmentScoped
     @Provides
-    static RecyclerAdapter getRecyclerAdapter() {
-        return new RecyclerAdapter();
+    static RecyclerAdapter getRecyclerAdapter(Application application) {
+        return new RecyclerAdapter(application);
     }
 }

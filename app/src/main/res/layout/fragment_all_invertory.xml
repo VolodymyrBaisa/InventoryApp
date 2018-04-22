@@ -15,6 +15,26 @@
         app:layout_constraintRight_toRightOf="parent"
         tools:listitem="@layout/item_layout"/>
 
+    <ImageView
+        android:id="@+id/image_empty_bag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/empty_bag"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/empty_list_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/you_have_nothing_in_you_list_add_some"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/image_empty_bag"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_product"
         android:layout_width="wrap_content"

@@ -1,5 +1,7 @@
 package com.example.volodymyr.inventoryapp.data;
 
+import android.support.annotation.Nullable;
+
 import com.example.volodymyr.inventoryapp.data.model.Product;
 
 import java.util.List;
@@ -25,19 +27,20 @@ public class DataManager {
         return mDbHelper.getProduct(productId);
     }
 
+    @Nullable
     public List<Product> getProducts() {
         return mDbHelper.getProducts();
     }
 
-    public int editProduct(Long productId, Product product){
+    public int editProduct(Long productId, Product product) {
         return mDbHelper.updateProduct(productId, product);
     }
 
-    public void deleteAllProducts(){
+    public void deleteAllProducts() {
         mDbHelper.deleteAllProducts();
     }
 
-    public void deleteProduct(Long productId){
+    public void deleteProduct(Long productId) {
         mDbHelper.deleteProduct(productId);
     }
 }

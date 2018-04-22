@@ -1,27 +1,39 @@
 package com.example.volodymyr.inventoryapp.utils;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.util.Log;
 
-import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import javax.annotation.Nullable;
+
 public class ImageUtils {
+    private static final String TAG = ImageUtils.class.getSimpleName();
+
     private ImageUtils() {
         throw new IllegalAccessError("Utility class");
     }
 
-    public static Bitmap getBitmapFromByteArray(byte[] bytes) {
-        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    @Nullable
+    public static InputStream getImageStream(Context context, String imageLink) {
+        try {
+            if (context != null) {
+                return context.getContentResolver().openInputStream(Uri.parse(imageLink));
+            }
+        } catch (FileNotFoundException e) {
+            Log.e(TAG, e.getMessage());
+        }
+        return null;
     }
 
-    public static Bitmap getBitmapFromInputStream(InputStream inputStream) {
-        return BitmapFactory.decodeStream(inputStream);
-    }
-
-    public static byte[] getBytesFromBitmap(Bitmap bitmap) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, stream);
-        return stream.toByteArray();
+    @Nullable
+    public static Bitmap getBitmapFromStream(InputStream imageStream) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 8;
+        return BitmapFactory.decodeStream(imageStream, null, options);
     }
 }

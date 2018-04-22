@@ -1,5 +1,7 @@
 package com.example.volodymyr.inventoryapp.ui.fragments.allinventory;
 
+import android.view.View;
+
 import com.example.volodymyr.inventoryapp.data.DataManager;
 import com.example.volodymyr.inventoryapp.data.model.Product;
 
@@ -24,14 +26,17 @@ public class AllInventoryPresenter implements AllInventoryContract.Presenter {
 
     @Override
     public void dropView() {
-        mWeakReference.clear();
+        if(mWeakReference.get() != null) mWeakReference.clear();
     }
 
     @Override
     public void showProductsList() {
         List<Product> products = mDataManager.getProducts();
-        if(products != null){
-            mWeakReference.get().setProducts(products);
+        if(products != null && products.size() > 0){
+            mWeakReference.get().setMessageIfListEmpty(View.GONE);
+        } else {
+            mWeakReference.get().setMessageIfListEmpty(View.VISIBLE);
         }
+        mWeakReference.get().setProducts(products);
     }
 }

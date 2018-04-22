@@ -1,4 +1,4 @@
-package com.example.volodymyr.inventoryapp.ui.fragments.addinventory;
+package com.example.volodymyr.inventoryapp.ui.fragments.editproduct;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.volodymyr.inventoryapp.R;
+import com.example.volodymyr.inventoryapp.data.model.Product;
 import com.example.volodymyr.inventoryapp.di.module.ActivityScoped;
 import com.example.volodymyr.inventoryapp.utils.ActivityUtils;
 import com.example.volodymyr.inventoryapp.utils.ImageUtils;
@@ -28,10 +29,12 @@ import butterknife.OnClick;
 import dagger.android.support.DaggerFragment;
 
 @ActivityScoped
-public class AddInventoryFragment extends DaggerFragment implements AddInventoryContract.View {
-    public final static int PICK_IMAGE_FOR_PRODUCT = 100;
+public class EditProductFragment extends DaggerFragment implements EditProductContract.View {
+    public final static int PICK_IMAGE_FOR_PRODUCT = 101;
+    private final static String ID_KEY = "id_key_edit";
+
     @Inject
-    protected AddInventoryPresenter mAddInventoryPresenter;
+    protected EditProductPresenter mEditProductPresenter;
 
     @BindView(R.id.product_image)
     protected ImageView mProductImage;
@@ -47,7 +50,7 @@ public class AddInventoryFragment extends DaggerFragment implements AddInventory
     protected EditText mProductEditSupplierPhoneNumber;
 
     @Inject
-    public AddInventoryFragment() {
+    public EditProductFragment() {
     }
 
     @Nullable
@@ -61,19 +64,37 @@ public class AddInventoryFragment extends DaggerFragment implements AddInventory
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setTitle(getContext(), R.string.add_product);
-    }
+        setTitle(getContext(), R.string.edit_product);
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        mAddInventoryPresenter.takeView(this);
+        mEditProductPresenter.takeView(this);
+        if (getArguments() != null) {
+            mEditProductPresenter.setProduct(getArguments().getLong(ID_KEY));
+            mEditProductPresenter.prepareProduct();
+        }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mAddInventoryPresenter.dropView();
+        mEditProductPresenter.dropView();
+    }
+
+    public void setProductId(long id) {
+        Bundle bundle = new Bundle();
+        bundle.putLong(ID_KEY, id);
+        setArguments(bundle);
+    }
+
+    @Override
+    public void initProduct(Product product) {
+        InputStream imageStream = ImageUtils.getImageStream(getActivity(), product.getProductImageLink());
+        mProductImage.setImageBitmap(ImageUtils.getBitmapFromStream(imageStream));
+        mProductImage.setContentDescription(product.getProductImageLink());
+        mProductEditName.setText(product.getProductName());
+        mProductEditPrice.setText(String.valueOf(product.getPrice()));
+        mProductEditQuantity.setText(String.valueOf(product.getQuantity()));
+        mProductEditSupplierName.setText(product.getSupplierName());
+        mProductEditSupplierPhoneNumber.setText(String.valueOf(product.getSupplierPhoneNumber()));
     }
 
     @OnClick(R.id.product_image)
@@ -83,7 +104,7 @@ public class AddInventoryFragment extends DaggerFragment implements AddInventory
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mAddInventoryPresenter.setImageResult(requestCode, PICK_IMAGE_FOR_PRODUCT, resultCode, data);
+        mEditProductPresenter.setImageResult(requestCode, PICK_IMAGE_FOR_PRODUCT, resultCode, data);
     }
 
     @Override
@@ -97,7 +118,7 @@ public class AddInventoryFragment extends DaggerFragment implements AddInventory
     }
 
     @OnClick(R.id.save_product)
-    public void saveNewProduct(View view) {
+    public void editProduct(View view) {
         String imageLink = String.valueOf(mProductImage.getContentDescription());
         String productName = String.valueOf(mProductEditName.getText()).trim();
         int productPrice = IntegerUtils.parceInt(String.valueOf(mProductEditPrice.getText()).trim());
@@ -105,7 +126,8 @@ public class AddInventoryFragment extends DaggerFragment implements AddInventory
         String productSupplierName = String.valueOf(mProductEditSupplierName.getText()).trim();
         String productSupplierPhoneNumber = String.valueOf(mProductEditSupplierPhoneNumber.getText()).trim();
 
-        mAddInventoryPresenter.createProduct(
+        mEditProductPresenter.editProduct(
+                getArguments().getLong(ID_KEY),
                 imageLink,
                 productName,
                 productPrice,

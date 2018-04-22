@@ -18,6 +18,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
+                android:id="@+id/product_image"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:scaleType="centerCrop"
@@ -43,12 +44,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/product_name"
-                app:layout_constraintBottom_toBottomOf="@id/product_edit_name"
+                app:layout_constraintBottom_toBottomOf="@id/product_name"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/product_edit_name" />
+                app:layout_constraintTop_toTopOf="@id/product_name" />
 
             <TextView
-                android:id="@+id/product_edit_name"
+                android:id="@+id/product_name"
                 style="@style/TextPrimaryStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -64,19 +65,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/product_price"
-                app:layout_constraintBottom_toBottomOf="@id/product_edit_price"
+                app:layout_constraintBottom_toBottomOf="@id/product_price"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/product_edit_price" />
+                app:layout_constraintTop_toTopOf="@id/product_price" />
 
             <TextView
-                android:id="@+id/product_edit_price"
+                android:id="@+id/product_price"
                 style="@style/TextPrimaryStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border_line"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/product_price_text"
-                app:layout_constraintTop_toBottomOf="@id/product_edit_name"
+                app:layout_constraintTop_toBottomOf="@id/product_name"
                 tools:text="@tools:sample/us_zipcodes" />
 
             <TextView
@@ -85,19 +86,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/product_quantity"
-                app:layout_constraintBottom_toBottomOf="@id/product_edit_quantity"
+                app:layout_constraintBottom_toBottomOf="@id/product_quantity"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/product_edit_quantity" />
+                app:layout_constraintTop_toTopOf="@id/product_quantity" />
 
             <TextView
-                android:id="@+id/product_edit_quantity"
+                android:id="@+id/product_quantity"
                 style="@style/TextPrimaryStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border_line"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/product_quantity_text"
-                app:layout_constraintTop_toBottomOf="@id/product_edit_price"
+                app:layout_constraintTop_toBottomOf="@id/product_price"
                 tools:text="@tools:sample/us_zipcodes" />
 
             <TextView
@@ -106,19 +107,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/supplier_name"
-                app:layout_constraintBottom_toBottomOf="@id/product_edit_supplier_name"
+                app:layout_constraintBottom_toBottomOf="@id/product_supplier_name"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/product_edit_supplier_name" />
+                app:layout_constraintTop_toTopOf="@id/product_supplier_name" />
 
             <TextView
-                android:id="@+id/product_edit_supplier_name"
+                android:id="@+id/product_supplier_name"
                 style="@style/TextPrimaryStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border_line"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/product_supplier_name_text"
-                app:layout_constraintTop_toBottomOf="@id/product_edit_quantity"
+                app:layout_constraintTop_toBottomOf="@id/product_quantity"
                 tools:text="@tools:sample/full_names" />
 
             <TextView
@@ -127,19 +128,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/supplier_phone_number"
-                app:layout_constraintBottom_toBottomOf="@id/product_edit_supplier_phone_number"
+                app:layout_constraintBottom_toBottomOf="@id/product_supplier_phone_number"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/product_edit_supplier_phone_number" />
+                app:layout_constraintTop_toTopOf="@id/product_supplier_phone_number" />
 
             <TextView
-                android:id="@+id/product_edit_supplier_phone_number"
+                android:id="@+id/product_supplier_phone_number"
                 style="@style/TextPrimaryStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border_line"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/product_supplier_phone_number_text"
-                app:layout_constraintTop_toBottomOf="@id/product_edit_supplier_name"
+                app:layout_constraintTop_toBottomOf="@id/product_supplier_name"
                 tools:text="@tools:sample/us_phones" />
 
             <android.support.design.widget.FloatingActionButton

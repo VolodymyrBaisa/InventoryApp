@@ -32,12 +32,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/product_name"
-        app:layout_constraintBottom_toBottomOf="@id/product_edit_name"
+        app:layout_constraintBottom_toBottomOf="@id/product_name"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@id/product_edit_name" />
+        app:layout_constraintTop_toTopOf="@id/product_name" />
 
     <EditText
-        android:id="@+id/product_edit_name"
+        android:id="@+id/product_name"
         style="@style/EditTextStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -55,21 +55,21 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/product_price"
-        app:layout_constraintBottom_toBottomOf="@id/product_edit_price"
+        app:layout_constraintBottom_toBottomOf="@id/product_price"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@id/product_edit_price" />
+        app:layout_constraintTop_toTopOf="@id/product_price" />
 
     <EditText
-        android:id="@+id/product_edit_price"
+        android:id="@+id/product_price"
         style="@style/EditTextStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_border_line"
         android:hint="@string/product_price_hint"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/product_price_text"
-        app:layout_constraintTop_toBottomOf="@id/product_edit_name"
+        app:layout_constraintTop_toBottomOf="@id/product_name"
         tools:text="@tools:sample/us_zipcodes" />
 
     <TextView
@@ -78,45 +78,22 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/product_quantity"
-        app:layout_constraintBottom_toBottomOf="@id/product_quantity_add"
+        app:layout_constraintBottom_toBottomOf="@id/product_quantity"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@id/product_quantity_add" />
-
-    <ImageButton
-        android:id="@+id/product_quantity_add"
-        style="@style/ImageButtonStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:padding="2dp"
-        android:src="@drawable/ic_stat_add"
-        app:layout_constraintBottom_toBottomOf="@id/product_edit_quantity"
-        app:layout_constraintStart_toEndOf="@id/product_quantity_text"
-        app:layout_constraintTop_toTopOf="@id/product_edit_quantity" />
+        app:layout_constraintTop_toTopOf="@id/product_quantity" />
 
     <EditText
-        android:id="@+id/product_edit_quantity"
+        android:id="@+id/product_quantity"
         style="@style/EditTextStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_border_line"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@id/product_quantity_remove"
-        app:layout_constraintEnd_toStartOf="@+id/product_quantity_remove"
-        app:layout_constraintStart_toEndOf="@id/product_quantity_add"
-        app:layout_constraintTop_toTopOf="@id/product_quantity_remove"
-        tools:text="@tools:sample/us_zipcodes" />
-
-    <ImageButton
-        android:id="@+id/product_quantity_remove"
-        style="@style/ImageButtonStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:padding="2dp"
-        android:src="@drawable/ic_stat_remove"
+        android:hint="@string/product_quantity_hint"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/product_edit_price" />
+        app:layout_constraintStart_toEndOf="@id/product_quantity_text"
+        app:layout_constraintTop_toBottomOf="@id/product_price"
+        tools:text="@tools:sample/us_zipcodes" />
 
     <TextView
         android:id="@+id/product_supplier_name_text"
@@ -124,12 +101,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/supplier_name"
-        app:layout_constraintBottom_toBottomOf="@id/product_edit_supplier_name"
+        app:layout_constraintBottom_toBottomOf="@id/product_supplier_name"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@id/product_edit_supplier_name" />
+        app:layout_constraintTop_toTopOf="@id/product_supplier_name" />
 
     <EditText
-        android:id="@+id/product_edit_supplier_name"
+        android:id="@+id/product_supplier_name"
         style="@style/EditTextStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -138,7 +115,7 @@
         android:inputType="textCapSentences|textAutoCorrect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/product_supplier_name_text"
-        app:layout_constraintTop_toBottomOf="@id/product_quantity_remove"
+        app:layout_constraintTop_toBottomOf="@id/product_quantity"
         tools:text="@tools:sample/full_names" />
 
     <TextView
@@ -147,12 +124,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/supplier_phone_number"
-        app:layout_constraintBottom_toBottomOf="@id/product_edit_supplier_phone_number"
+        app:layout_constraintBottom_toBottomOf="@id/product_supplier_phone_number"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@id/product_edit_supplier_phone_number" />
+        app:layout_constraintTop_toTopOf="@id/product_supplier_phone_number" />
 
     <EditText
-        android:id="@+id/product_edit_supplier_phone_number"
+        android:id="@+id/product_supplier_phone_number"
         style="@style/EditTextStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -161,7 +138,7 @@
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/product_supplier_phone_number_text"
-        app:layout_constraintTop_toBottomOf="@id/product_edit_supplier_name"
+        app:layout_constraintTop_toBottomOf="@id/product_supplier_name"
         tools:text="@tools:sample/us_phones" />
 
     <android.support.design.widget.FloatingActionButton

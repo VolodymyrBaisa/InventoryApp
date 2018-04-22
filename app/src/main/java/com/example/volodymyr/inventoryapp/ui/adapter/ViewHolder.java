@@ -11,28 +11,28 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ViewHolder extends RecyclerView.ViewHolder {
-  @BindView(R.id.product_preview_image)
-  protected ImageView mProductPreviewImage;
+    @BindView(R.id.product_preview_image)
+    protected ImageView mProductPreviewImage;
 
-  @BindView(R.id.product_preview_name)
-  protected TextView mProductPreviewName;
+    @BindView(R.id.product_preview_name)
+    protected TextView mProductPreviewName;
 
-  @BindView(R.id.product_preview_quantity)
-  protected TextView mProductQuantity;
+    @BindView(R.id.product_preview_quantity)
+    protected TextView mProductQuantity;
 
-  @BindView(R.id.product_preview_price)
-  protected TextView mProductPrice;
+    @BindView(R.id.product_preview_price)
+    protected TextView mProductPrice;
 
     public ViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
 
-  public void bind(final long itemId, final OnItemClickListener listener) {
-    itemView.setOnClickListener(new View.OnClickListener() {
-      @Override public void onClick(View v) {
-        listener.onItemClick(itemId);
-      }
-    });
-  }
+    public void bind(final long itemId, final OnItemClickListener listener) {
+        itemView.setOnClickListener(v -> {
+            if (itemId > 0) {
+                listener.onItemClick(itemId);
+            }
+        });
+    }
 }
