@@ -33,7 +33,9 @@ public class EditProductPresenter implements EditProductContract.Presenter {
 
     @Override
     public void setProduct(long productId) {
-        mProduct = mDataManager.getProduct(productId);
+        if (mDataManager.isProductExists(productId)) {
+            mProduct = mDataManager.getProduct(productId);
+        }
     }
 
     @Override

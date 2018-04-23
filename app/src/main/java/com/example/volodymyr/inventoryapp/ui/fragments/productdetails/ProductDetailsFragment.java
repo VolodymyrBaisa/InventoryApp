@@ -63,11 +63,7 @@ public class ProductDetailsFragment extends DaggerFragment implements ProductDet
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setTitle(getContext(), R.string.details_product);
-    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
         mProductDetailsPresenter.takeView(this);
         if (getArguments() != null) {
             mProductDetailsPresenter.setProduct(getArguments().getLong(ID_KEY));

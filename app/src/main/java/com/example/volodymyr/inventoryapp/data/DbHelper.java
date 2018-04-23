@@ -81,7 +81,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
-                Product product = new Product(
+                return new Product(
                         cursor.getInt(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_ID)),
                         cursor.getString(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_IMAGE_LINK)),
                         cursor.getString(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_NAME)),
@@ -89,7 +89,6 @@ public class DbHelper extends SQLiteOpenHelper {
                         cursor.getInt(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_QUANTITY)),
                         cursor.getString(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_SUPPLIER_NAME)),
                         cursor.getString(cursor.getColumnIndex(PRODUCT_COLUMN_PRODUCT_SUPPLIER_PHONE_NUMBER)));
-                return product;
             } else {
                 throw new Resources.NotFoundException("Product with id " + productId + " does not exists");
             }
@@ -157,5 +156,22 @@ public class DbHelper extends SQLiteOpenHelper {
     public void deleteProduct(Long productId) {
         SQLiteDatabase db = this.getReadableDatabase();
         db.delete(PRODUCT_TABLE_NAME, PRODUCT_COLUMN_PRODUCT_ID + "=" + productId, null);
+    }
+
+    public boolean isProductExists(long productId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+         Cursor cursor = null;
+        try {
+            cursor = db.rawQuery(
+                    "SELECT * FROM " + PRODUCT_TABLE_NAME + " WHERE "
+                            + PRODUCT_COLUMN_PRODUCT_ID
+                            + " = ? ",
+                    new String[]{productId + ""});
+
+            return cursor.getCount() > 0;
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
     }
 }

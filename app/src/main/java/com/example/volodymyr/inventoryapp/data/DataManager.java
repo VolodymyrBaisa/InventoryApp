@@ -43,4 +43,8 @@ public class DataManager {
     public void deleteProduct(Long productId) {
         mDbHelper.deleteProduct(productId);
     }
+
+    public boolean isProductExists(long productId) {
+       return mDbHelper.isProductExists(productId);
+    }
 }

@@ -7,7 +7,7 @@ public class IntegerUtils {
         throw new IllegalAccessError("Utility class");
     }
 
-    public static int parceInt(String value) {
+    public static int parseInt(String value) {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException nfe) {

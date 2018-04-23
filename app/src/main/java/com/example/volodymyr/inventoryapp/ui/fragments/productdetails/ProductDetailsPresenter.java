@@ -30,7 +30,9 @@ public class ProductDetailsPresenter implements ProductDetailsContract.Presenter
 
     @Override
     public void setProduct(long productId) {
-        mProduct = mDataManager.getProduct(productId);
+        if (mDataManager.isProductExists(productId)) {
+            mProduct = mDataManager.getProduct(productId);
+        }
     }
 
     @Override
@@ -39,7 +41,7 @@ public class ProductDetailsPresenter implements ProductDetailsContract.Presenter
     }
 
     @Override
-    public void deleteProduct(long productId){
+    public void deleteProduct(long productId) {
         mDataManager.deleteProduct(productId);
     }
 }

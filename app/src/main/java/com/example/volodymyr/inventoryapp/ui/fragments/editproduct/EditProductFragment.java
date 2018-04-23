@@ -121,8 +121,8 @@ public class EditProductFragment extends DaggerFragment implements EditProductCo
     public void editProduct(View view) {
         String imageLink = String.valueOf(mProductImage.getContentDescription());
         String productName = String.valueOf(mProductEditName.getText()).trim();
-        int productPrice = IntegerUtils.parceInt(String.valueOf(mProductEditPrice.getText()).trim());
-        int productQuantity = IntegerUtils.parceInt(String.valueOf(mProductEditQuantity.getText()).trim());
+        int productPrice = IntegerUtils.parseInt(String.valueOf(mProductEditPrice.getText()).trim());
+        int productQuantity = IntegerUtils.parseInt(String.valueOf(mProductEditQuantity.getText()).trim());
         String productSupplierName = String.valueOf(mProductEditSupplierName.getText()).trim();
         String productSupplierPhoneNumber = String.valueOf(mProductEditSupplierPhoneNumber.getText()).trim();
 
