@@ -2,6 +2,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/delete_all_products"
-        android:icon="@drawable/ic_stat_delete"
         android:title="@string/delete_all" />
 </menu>
