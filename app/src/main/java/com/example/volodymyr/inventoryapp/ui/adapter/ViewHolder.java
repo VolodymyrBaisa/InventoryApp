@@ -23,16 +23,20 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.product_preview_price)
     protected TextView mProductPrice;
 
+    @BindView(R.id.product_shop_cart)
+    protected ImageView mProductShopCart;
+
     public ViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
 
-    public void bind(final long itemId, final OnItemClickListener listener) {
+    public void bind(final long productId, final OnItemClickListener listener) {
         itemView.setOnClickListener(v -> {
-            if (itemId > 0) {
-                listener.onItemClick(itemId);
+            if (productId > 0) {
+                listener.onItemClick(productId);
             }
         });
+        mProductShopCart.setOnClickListener(v -> listener.onShopCartClick(productId));
     }
 }

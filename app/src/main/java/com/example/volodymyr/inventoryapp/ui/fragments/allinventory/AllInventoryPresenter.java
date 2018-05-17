@@ -26,17 +26,33 @@ public class AllInventoryPresenter implements AllInventoryContract.Presenter {
 
     @Override
     public void dropView() {
-        if(mWeakReference.get() != null) mWeakReference.clear();
+        if (mWeakReference != null && mWeakReference.get() != null) mWeakReference.clear();
     }
 
     @Override
     public void showProductsList() {
         List<Product> products = mDataManager.getProducts();
-        if(products != null && products.size() > 0){
+        if (products != null && products.size() > 0) {
             mWeakReference.get().setMessageIfListEmpty(View.GONE);
         } else {
             mWeakReference.get().setMessageIfListEmpty(View.VISIBLE);
         }
         mWeakReference.get().setProducts(products);
     }
+
+    @Override
+    public void quantityReduce(long productId) {
+        Product product = mDataManager.getProduct(productId);
+        int quantity = product.getQuantity();
+        if (quantity > 0) {
+            mDataManager.editProduct(productId, new Product(product.getProductImageLink(),
+                    product.getProductName(),
+                    product.getPrice(),
+                    product.getQuantity() - 1,
+                    product.getSupplierName(),
+                    product.getSupplierPhoneNumber()));
+        }
+    }
+
+
 }

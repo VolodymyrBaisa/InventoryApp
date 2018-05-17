@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.volodymyr.inventoryapp.R;
 import com.example.volodymyr.inventoryapp.data.model.Product;
 import com.example.volodymyr.inventoryapp.di.module.ActivityScoped;
+import com.example.volodymyr.inventoryapp.ui.adapter.OnItemClickListener;
 import com.example.volodymyr.inventoryapp.ui.adapter.RecyclerAdapter;
 import com.example.volodymyr.inventoryapp.ui.fragments.addinventory.AddInventoryFragment;
 import com.example.volodymyr.inventoryapp.ui.fragments.productdetails.ProductDetailsFragment;
@@ -61,8 +62,8 @@ public class AllInventoryFragment extends DaggerFragment implements AllInventory
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onStart() {
+        super.onStart();
         setTitle(getContext(), R.string.inventory);
         mAllInventoryPresenter.takeView(this);
         mAllInventoryPresenter.showProductsList();
@@ -79,11 +80,20 @@ public class AllInventoryFragment extends DaggerFragment implements AllInventory
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         mProductList.setLayoutManager(linearLayoutManager);
         mProductList.setAdapter(mRecyclerAdapter);
-        mRecyclerAdapter.setOnClickItemListener(itemId -> {
-            FragmentManager fragmentManager = getFragmentManager();
-            if (fragmentManager != null) {
-                ActivityUtils.addFragmentToActivity(fragmentManager, mProductDetailsFragment, R.id.fragment_container);
-                mProductDetailsFragment.setProductId(itemId);
+        mRecyclerAdapter.setOnClickItemListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(long productId) {
+                FragmentManager fragmentManager = getFragmentManager();
+                if (fragmentManager != null) {
+                    ActivityUtils.addFragmentToActivity(fragmentManager, mProductDetailsFragment, R.id.fragment_container);
+                    mProductDetailsFragment.setProductId(productId);
+                }
+            }
+
+            @Override
+            public void onShopCartClick(long productId) {
+                mAllInventoryPresenter.quantityReduce(productId);
+                mAllInventoryPresenter.showProductsList();
             }
         });
     }

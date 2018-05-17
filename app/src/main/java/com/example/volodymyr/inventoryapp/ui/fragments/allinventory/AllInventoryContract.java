@@ -14,5 +14,6 @@ public interface AllInventoryContract {
 
     interface Presenter extends BasePresenter<View> {
         void showProductsList();
+        void quantityReduce(long productId);
     }
 }

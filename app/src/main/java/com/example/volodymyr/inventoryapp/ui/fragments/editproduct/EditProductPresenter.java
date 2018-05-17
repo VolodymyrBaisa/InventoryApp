@@ -28,7 +28,7 @@ public class EditProductPresenter implements EditProductContract.Presenter {
 
     @Override
     public void dropView() {
-        if (mWeakReference.get() != null) mWeakReference.clear();
+        if (mWeakReference != null && mWeakReference.get() != null) mWeakReference.clear();
     }
 
     @Override

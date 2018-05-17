@@ -62,8 +62,8 @@ public class EditProductFragment extends DaggerFragment implements EditProductCo
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onStart() {
+        super.onStart();
         setTitle(getContext(), R.string.edit_product);
 
         mEditProductPresenter.takeView(this);
@@ -125,7 +125,6 @@ public class EditProductFragment extends DaggerFragment implements EditProductCo
         int productQuantity = IntegerUtils.parseInt(String.valueOf(mProductEditQuantity.getText()).trim());
         String productSupplierName = String.valueOf(mProductEditSupplierName.getText()).trim();
         String productSupplierPhoneNumber = String.valueOf(mProductEditSupplierPhoneNumber.getText()).trim();
-
         mEditProductPresenter.editProduct(
                 getArguments().getLong(ID_KEY),
                 imageLink,
@@ -136,7 +135,6 @@ public class EditProductFragment extends DaggerFragment implements EditProductCo
                 productSupplierPhoneNumber);
 
         popBackFragment();
-        clearProductDescription();
     }
 
     private void popBackFragment() {
@@ -144,13 +142,5 @@ public class EditProductFragment extends DaggerFragment implements EditProductCo
         if (fragmentManager != null) {
             fragmentManager.popBackStack();
         }
-    }
-
-    private void clearProductDescription() {
-        mProductEditName.setText("");
-        mProductEditPrice.setText("");
-        mProductEditQuantity.setText("");
-        mProductEditSupplierName.setText("");
-        mProductEditSupplierPhoneNumber.setText("");
     }
 }

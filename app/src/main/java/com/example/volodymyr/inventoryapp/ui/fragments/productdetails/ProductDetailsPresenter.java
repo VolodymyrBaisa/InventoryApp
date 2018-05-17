@@ -25,7 +25,7 @@ public class ProductDetailsPresenter implements ProductDetailsContract.Presenter
 
     @Override
     public void dropView() {
-        if (mWeakReference.get() != null) mWeakReference.clear();
+        if (mWeakReference != null && mWeakReference.get() != null) mWeakReference.clear();
     }
 
     @Override
