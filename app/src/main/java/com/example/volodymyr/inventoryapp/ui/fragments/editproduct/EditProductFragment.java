@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.volodymyr.inventoryapp.R;
 import com.example.volodymyr.inventoryapp.data.model.Product;
@@ -44,7 +45,7 @@ public class EditProductFragment extends DaggerFragment implements EditProductCo
     @BindView(R.id.product_price)
     protected EditText mProductEditPrice;
     @BindView(R.id.product_quantity)
-    protected TextView mProductEditQuantity;
+    protected TextView mProductQuantity;
     @BindView(R.id.product_supplier_name)
     protected EditText mProductEditSupplierName;
     @BindView(R.id.product_supplier_phone_number)
@@ -63,15 +64,20 @@ public class EditProductFragment extends DaggerFragment implements EditProductCo
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         setTitle(getContext(), R.string.edit_product);
-
         mEditProductPresenter.takeView(this);
         if (getArguments() != null) {
             mEditProductPresenter.setProduct(getArguments().getLong(ID_KEY));
-            mEditProductPresenter.prepareProduct();
+            mEditProductPresenter.prepareImageProduct();
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mEditProductPresenter.prepareProduct();
     }
 
     @Override
@@ -88,14 +94,17 @@ public class EditProductFragment extends DaggerFragment implements EditProductCo
 
     @Override
     public void initProduct(Product product) {
+        mProductEditName.setText(product.getProductName());
+        mProductEditPrice.setText(String.valueOf(product.getPrice()));
+        mProductQuantity.setText(String.valueOf(product.getQuantity()));
+        mProductEditSupplierName.setText(product.getSupplierName());
+        mProductEditSupplierPhoneNumber.setText(String.valueOf(product.getSupplierPhoneNumber()));
+    }
+
+    public void initImageProduct(Product product) {
         InputStream imageStream = ImageUtils.getImageStream(getActivity(), product.getProductImageLink());
         mProductImage.setImageBitmap(ImageUtils.getBitmapFromStream(imageStream));
         mProductImage.setContentDescription(product.getProductImageLink());
-        mProductEditName.setText(product.getProductName());
-        mProductEditPrice.setText(String.valueOf(product.getPrice()));
-        mProductEditQuantity.setText(String.valueOf(product.getQuantity()));
-        mProductEditSupplierName.setText(product.getSupplierName());
-        mProductEditSupplierPhoneNumber.setText(String.valueOf(product.getSupplierPhoneNumber()));
     }
 
     @OnClick(R.id.product_image)
@@ -123,31 +132,41 @@ public class EditProductFragment extends DaggerFragment implements EditProductCo
         String imageLink = String.valueOf(mProductImage.getContentDescription());
         String productName = String.valueOf(mProductEditName.getText()).trim();
         int productPrice = IntegerUtils.parseInt(String.valueOf(mProductEditPrice.getText()).trim());
-        int productQuantity = IntegerUtils.parseInt(String.valueOf(mProductEditQuantity.getText()).trim());
+        int productQuantity = IntegerUtils.parseInt(String.valueOf(mProductQuantity.getText()).trim());
         String productSupplierName = String.valueOf(mProductEditSupplierName.getText()).trim();
         String productSupplierPhoneNumber = String.valueOf(mProductEditSupplierPhoneNumber.getText()).trim();
-        mEditProductPresenter.editProduct(
-                getArguments().getLong(ID_KEY),
-                imageLink,
+
+        if (mEditProductPresenter.isFieldEmpty(imageLink,
                 productName,
-                productPrice,
                 productQuantity,
                 productSupplierName,
-                productSupplierPhoneNumber);
+                productSupplierPhoneNumber)) {
 
-        popBackFragment();
+            mEditProductPresenter.editProduct(
+                    getArguments().getLong(ID_KEY),
+                    imageLink,
+                    productName,
+                    productPrice,
+                    productQuantity,
+                    productSupplierName,
+                    productSupplierPhoneNumber);
+
+            popBackFragment();
+        } else {
+            Toast.makeText(getContext(), R.string.fill_correct_lines_error, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @OnClick(R.id.product_add_quantity)
-    public void addQuantity(View view){
-        int productQuantity = IntegerUtils.parseInt(String.valueOf(mProductEditQuantity.getText()).trim());
-        mProductEditQuantity.setText(String.valueOf(++productQuantity));
+    public void addQuantity(View view) {
+        int productQuantity = IntegerUtils.parseInt(String.valueOf(mProductQuantity.getText()).trim());
+        mProductQuantity.setText(String.valueOf(++productQuantity));
     }
 
     @OnClick(R.id.product_remove_quantity)
-    public void remove_quantity(View view){
-        int productQuantity = IntegerUtils.parseInt(String.valueOf(mProductEditQuantity.getText()).trim());
-        if(productQuantity != 0) mProductEditQuantity.setText(String.valueOf(--productQuantity));
+    public void remove_quantity(View view) {
+        int productQuantity = IntegerUtils.parseInt(String.valueOf(mProductQuantity.getText()).trim());
+        if (productQuantity != 0) mProductQuantity.setText(String.valueOf(--productQuantity));
     }
 
     private void popBackFragment() {

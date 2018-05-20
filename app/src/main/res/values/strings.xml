@@ -7,8 +7,7 @@
     <string name="supplier_name">Supplier name:</string>
     <string name="supplier_phone_number">Supplier phone number:</string>
     <string name="product_name_hint">Product name</string>
-    <string name="product_quantity_text">0</string>
-    <string name="product_price_hint">Product price</string>
+    <string name="product_zero_text">0</string>
     <string name="product_supplier_name_hint">Product supplier name</string>
     <string name="product_supplier_phone_number_hint">Product supplier phone number</string>
     <string name="inventory">Inventory</string>
@@ -18,4 +17,5 @@
     <string name="edit_product">Edit product</string>
     <string name="delete_all">Delete all products</string>
     <string name="call_phone_permission">You need to allow access to call phone permission.</string>
+    <string name="fill_correct_lines_error">Please fill correct all empty lines</string>
 </resources>

@@ -27,7 +27,7 @@ public class AddInventoryPresenter implements AddInventoryContract.Presenter {
 
     @Override
     public void dropView() {
-       if(mWeakReference.get() != null) mWeakReference.clear();
+        if (mWeakReference.get() != null) mWeakReference.clear();
     }
 
     @Override
@@ -42,5 +42,18 @@ public class AddInventoryPresenter implements AddInventoryContract.Presenter {
                 mWeakReference.get().setImageProduct(String.valueOf(data.getData()));
             }
         }
+    }
+
+    @Override
+    public boolean isFieldEmpty(String imageLink,
+                               String productName,
+                               int productQuantity,
+                               String productSupplierName,
+                               String productSupplierPhoneNumber) {
+        return !imageLink.contains("null") && !imageLink.isEmpty()
+                && !productName.isEmpty()
+                && productQuantity > 0
+                && !productSupplierName.isEmpty()
+                && !productSupplierPhoneNumber.isEmpty();
     }
 }

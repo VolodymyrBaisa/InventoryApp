@@ -44,6 +44,11 @@ public class EditProductPresenter implements EditProductContract.Presenter {
     }
 
     @Override
+    public void prepareImageProduct() {
+        mWeakReference.get().initImageProduct(mProduct);
+    }
+
+    @Override
     public void setImageResult(int requestCode, int requestId, int resultCode, Intent data) {
         if (requestCode == requestId && resultCode == Activity.RESULT_OK) {
             if (data != null) {
@@ -63,5 +68,19 @@ public class EditProductPresenter implements EditProductContract.Presenter {
 
         mDataManager.editProduct(productId,
                 new Product(productImageLink, productName, price, quantity, supplierName, supplierPhoneNumber));
+    }
+
+    @Override
+    public boolean isFieldEmpty(String imageLink,
+                                String productName,
+                                int productQuantity,
+                                String productSupplierName,
+                                String productSupplierPhoneNumber) {
+
+        return !imageLink.contains("null") && !imageLink.isEmpty()
+                && !productName.isEmpty()
+                && productQuantity > 0
+                && !productSupplierName.isEmpty()
+                && !productSupplierPhoneNumber.isEmpty();
     }
 }

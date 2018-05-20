@@ -19,5 +19,11 @@ public interface AddInventoryContract {
                            String supplierPhoneNumber);
 
         void setImageResult(int requestCode, int requestId, int resultCode, Intent data);
+
+        boolean isFieldEmpty(String imageLink,
+                            String productName,
+                            int productQuantity,
+                            String productSupplierName,
+                            String productSupplierPhoneNumber);
     }
 }

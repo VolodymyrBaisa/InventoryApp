@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.volodymyr.inventoryapp.R;
 import com.example.volodymyr.inventoryapp.di.module.ActivityScoped;
@@ -40,7 +42,7 @@ public class AddInventoryFragment extends DaggerFragment implements AddInventory
     @BindView(R.id.product_price)
     protected EditText mProductEditPrice;
     @BindView(R.id.product_quantity)
-    protected EditText mProductEditQuantity;
+    protected TextView mProductQuantity;
     @BindView(R.id.product_supplier_name)
     protected EditText mProductEditSupplierName;
     @BindView(R.id.product_supplier_phone_number)
@@ -101,9 +103,15 @@ public class AddInventoryFragment extends DaggerFragment implements AddInventory
         String imageLink = String.valueOf(mProductImage.getContentDescription());
         String productName = String.valueOf(mProductEditName.getText()).trim();
         int productPrice = IntegerUtils.parseInt(String.valueOf(mProductEditPrice.getText()).trim());
-        int productQuantity = IntegerUtils.parseInt(String.valueOf(mProductEditQuantity.getText()).trim());
+        int productQuantity = IntegerUtils.parseInt(String.valueOf(mProductQuantity.getText()).trim());
         String productSupplierName = String.valueOf(mProductEditSupplierName.getText()).trim();
         String productSupplierPhoneNumber = String.valueOf(mProductEditSupplierPhoneNumber.getText()).trim();
+
+        if (mAddInventoryPresenter.isFieldEmpty(imageLink,
+                productName,
+                productQuantity,
+                productSupplierName,
+                productSupplierPhoneNumber)) {
 
         mAddInventoryPresenter.createProduct(
                 imageLink,
@@ -115,6 +123,21 @@ public class AddInventoryFragment extends DaggerFragment implements AddInventory
 
         popBackFragment();
         clearProductDescription();
+        } else {
+            Toast.makeText(getContext(), R.string.fill_correct_lines_error, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @OnClick(R.id.product_add_quantity)
+    public void addQuantity(View view) {
+        int productQuantity = IntegerUtils.parseInt(String.valueOf(mProductQuantity.getText()).trim());
+        mProductQuantity.setText(String.valueOf(++productQuantity));
+    }
+
+    @OnClick(R.id.product_remove_quantity)
+    public void remove_quantity(View view) {
+        int productQuantity = IntegerUtils.parseInt(String.valueOf(mProductQuantity.getText()).trim());
+        if (productQuantity != 0) mProductQuantity.setText(String.valueOf(--productQuantity));
     }
 
     private void popBackFragment() {
@@ -127,7 +150,7 @@ public class AddInventoryFragment extends DaggerFragment implements AddInventory
     private void clearProductDescription() {
         mProductEditName.setText("");
         mProductEditPrice.setText("");
-        mProductEditQuantity.setText("");
+        mProductQuantity.setText("");
         mProductEditSupplierName.setText("");
         mProductEditSupplierPhoneNumber.setText("");
     }
