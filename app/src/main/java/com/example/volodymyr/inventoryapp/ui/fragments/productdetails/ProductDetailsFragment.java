@@ -1,9 +1,13 @@
 package com.example.volodymyr.inventoryapp.ui.fragments.productdetails;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +30,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dagger.android.support.DaggerFragment;
 
+import static android.Manifest.permission.CALL_PHONE;
+
 @ActivityScoped
 public class ProductDetailsFragment extends DaggerFragment implements ProductDetailsContract.View {
     private final static String ID_KEY = "id_key_details";
+    private static final int PERMISSION_REQUEST_CODE = 200;
     @Inject
     protected ProductDetailsPresenter mProductDetailsPresenter;
     @Inject
@@ -107,6 +114,42 @@ public class ProductDetailsFragment extends DaggerFragment implements ProductDet
             ActivityUtils.addFragmentToActivity(fragmentManager, mEditProductFragment, R.id.fragment_container);
             mEditProductFragment.setProductId(getArguments().getLong(ID_KEY));
         }
+    }
+
+    @OnClick(R.id.call_supplier)
+    public void callSupplier(View view) {
+        if (checkPermission()) {
+            callSupplier();
+        } else {
+            requestPermission();
+        }
+    }
+
+    private boolean checkPermission() {
+        int result = ContextCompat.checkSelfPermission(getContext(), CALL_PHONE);
+        return result == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestPermission() {
+        requestPermissions(new String[]{CALL_PHONE}, PERMISSION_REQUEST_CODE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_REQUEST_CODE){
+            if (grantResults.length > 0) {
+                boolean callPhoneAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+
+                if (callPhoneAccepted) callSupplier();
+                else Snackbar.make(getView(), R.string.call_phone_permission, Snackbar.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private void callSupplier() {
+        String supplierPhoneNumber = mProductDetailsPresenter.callSupplier(getArguments().getLong(ID_KEY));
+        ActivityUtils.openCallManager(this, supplierPhoneNumber);
     }
 
     private void popBackFragment() {

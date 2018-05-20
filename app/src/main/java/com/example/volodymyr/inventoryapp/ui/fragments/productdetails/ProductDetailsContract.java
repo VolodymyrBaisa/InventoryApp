@@ -12,6 +12,7 @@ public interface ProductDetailsContract {
     interface Presenter extends BasePresenter<View> {
         void setProduct(long productId);
         void prepareProduct();
+        String callSupplier(long productId);
         void deleteProduct(long productId);
     }
 }

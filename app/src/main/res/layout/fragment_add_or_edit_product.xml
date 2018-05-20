@@ -78,22 +78,41 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/product_quantity"
-        app:layout_constraintBottom_toBottomOf="@id/product_quantity"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@id/product_quantity" />
+        app:layout_constraintTop_toTopOf="@id/product_add_quantity"
+        app:layout_constraintBottom_toBottomOf="@id/product_add_quantity"/>
 
-    <EditText
+    <ImageView
+        style="@style/ImageButtonStile"
+        android:id="@+id/product_add_quantity"
+        android:layout_width="@dimen/image_button_size"
+        android:layout_height="@dimen/image_button_size"
+        android:src="@drawable/ic_action_add"
+        app:layout_constraintTop_toTopOf="@id/product_quantity"
+        app:layout_constraintBottom_toBottomOf="@id/product_quantity"
+        app:layout_constraintStart_toEndOf="@id/product_quantity_text"/>
+
+    <TextView
         android:id="@+id/product_quantity"
         style="@style/EditTextStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_border_line"
-        android:inputType="number"
-        android:hint="@string/product_quantity_hint"
+        android:text="@string/product_quantity_text"
+        app:layout_constraintTop_toTopOf="@id/product_remove_quantity"
+        app:layout_constraintBottom_toBottomOf="@id/product_remove_quantity"
+        app:layout_constraintStart_toEndOf="@id/product_add_quantity"
+        app:layout_constraintEnd_toStartOf="@id/product_remove_quantity"/>
+
+    <ImageView
+        style="@style/ImageButtonStile"
+        android:id="@+id/product_remove_quantity"
+        android:layout_width="@dimen/image_button_size"
+        android:layout_height="@dimen/image_button_size"
+        android:src="@drawable/ic_action_minus"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/product_quantity_text"
         app:layout_constraintTop_toBottomOf="@id/product_price"
-        tools:text="@tools:sample/us_zipcodes" />
+        app:layout_constraintStart_toEndOf="@+id/product_quantity"/>
 
     <TextView
         android:id="@+id/product_supplier_name_text"
@@ -115,7 +134,7 @@
         android:inputType="textCapSentences|textAutoCorrect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/product_supplier_name_text"
-        app:layout_constraintTop_toBottomOf="@id/product_quantity"
+        app:layout_constraintTop_toBottomOf="@id/product_remove_quantity"
         tools:text="@tools:sample/full_names" />
 
     <TextView

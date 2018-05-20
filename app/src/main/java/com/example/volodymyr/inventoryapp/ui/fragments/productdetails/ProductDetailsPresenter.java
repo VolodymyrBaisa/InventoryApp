@@ -1,7 +1,10 @@
 package com.example.volodymyr.inventoryapp.ui.fragments.productdetails;
 
+import android.app.Activity;
+
 import com.example.volodymyr.inventoryapp.data.DataManager;
 import com.example.volodymyr.inventoryapp.data.model.Product;
+import com.example.volodymyr.inventoryapp.utils.ActivityUtils;
 
 import java.lang.ref.WeakReference;
 
@@ -33,6 +36,14 @@ public class ProductDetailsPresenter implements ProductDetailsContract.Presenter
         if (mDataManager.isProductExists(productId)) {
             mProduct = mDataManager.getProduct(productId);
         }
+    }
+
+    public String callSupplier(long productId){
+        if (mDataManager.isProductExists(productId)) {
+           return mDataManager.getProduct(productId).getSupplierPhoneNumber();
+        }
+
+        return "0";
     }
 
     @Override

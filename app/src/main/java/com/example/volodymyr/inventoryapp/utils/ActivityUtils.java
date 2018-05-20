@@ -1,6 +1,7 @@
 package com.example.volodymyr.inventoryapp.utils;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -32,5 +33,10 @@ public class ActivityUtils {
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("image/*");
         fragment.startActivityForResult(intent, requestCode);
+    }
+
+    public static void openCallManager(@NonNull Fragment fragment, String phoneNumber){
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
+        fragment.startActivity(intent);
     }
 }

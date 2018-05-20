@@ -12,6 +12,7 @@
         app:expanded="false">
 
         <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_tool"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:minHeight="100dp"
@@ -162,4 +163,13 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/call_supplier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_stat_local_phone"
+        android:layout_margin="@dimen/floating_button_margin"
+        app:layout_anchor="@id/collapsing_tool"
+        app:layout_anchorGravity="bottom|right|end"/>
 </android.support.design.widget.CoordinatorLayout>

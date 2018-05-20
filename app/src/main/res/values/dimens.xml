@@ -7,4 +7,5 @@
     <dimen name="product_preview_price_margin_start">31dp</dimen>
     <dimen name="product_image_size">100dp</dimen>
     <dimen name="image_padding">10dp</dimen>
+    <dimen name="image_button_size">22dp</dimen>
 </resources>

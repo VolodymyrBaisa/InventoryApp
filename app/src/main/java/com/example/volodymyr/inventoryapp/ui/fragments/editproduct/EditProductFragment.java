@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.volodymyr.inventoryapp.R;
 import com.example.volodymyr.inventoryapp.data.model.Product;
@@ -43,7 +44,7 @@ public class EditProductFragment extends DaggerFragment implements EditProductCo
     @BindView(R.id.product_price)
     protected EditText mProductEditPrice;
     @BindView(R.id.product_quantity)
-    protected EditText mProductEditQuantity;
+    protected TextView mProductEditQuantity;
     @BindView(R.id.product_supplier_name)
     protected EditText mProductEditSupplierName;
     @BindView(R.id.product_supplier_phone_number)
@@ -135,6 +136,18 @@ public class EditProductFragment extends DaggerFragment implements EditProductCo
                 productSupplierPhoneNumber);
 
         popBackFragment();
+    }
+
+    @OnClick(R.id.product_add_quantity)
+    public void addQuantity(View view){
+        int productQuantity = IntegerUtils.parseInt(String.valueOf(mProductEditQuantity.getText()).trim());
+        mProductEditQuantity.setText(String.valueOf(++productQuantity));
+    }
+
+    @OnClick(R.id.product_remove_quantity)
+    public void remove_quantity(View view){
+        int productQuantity = IntegerUtils.parseInt(String.valueOf(mProductEditQuantity.getText()).trim());
+        if(productQuantity != 0) mProductEditQuantity.setText(String.valueOf(--productQuantity));
     }
 
     private void popBackFragment() {
