@@ -1,4 +1,4 @@
-package com.example.volodymyr.inventoryapp.di;
+package com.example.volodymyr.inventoryapp.di.module;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

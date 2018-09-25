@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
 
 import com.example.volodymyr.inventoryapp.data.model.Product;
-import com.example.volodymyr.inventoryapp.di.DatabaseInfo;
+import com.example.volodymyr.inventoryapp.di.module.DatabaseInfo;
 
 import java.util.ArrayList;
 import java.util.List;

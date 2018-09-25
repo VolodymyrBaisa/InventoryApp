@@ -3,8 +3,6 @@ package com.example.volodymyr.inventoryapp.di.module;
 import android.app.Application;
 import android.content.Context;
 
-import com.example.volodymyr.inventoryapp.di.DatabaseInfo;
-
 import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
